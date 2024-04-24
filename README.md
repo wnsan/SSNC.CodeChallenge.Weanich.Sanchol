@@ -1,0 +1,1 @@
+# SSNC.CodeChallenge.Weanich.Sanchol
