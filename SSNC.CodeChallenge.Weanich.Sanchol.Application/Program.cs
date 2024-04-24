@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using SSNC.CodeChallenge.Weanich.Sanchol.Domains;
+﻿using SSNC.CodeChallenge.Weanich.Sanchol.Domains;
 using SSNC.CodeChallenge.Weanich.Sanchol.Services;
 
 int defaultWidth = 5;
