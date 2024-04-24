@@ -7,7 +7,7 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Application.Tests
     public class ApplicationIntegrationTests
     {
         [TestMethod]
-        public void Case1()
+        public void ExampleInputandOutputA()
         {
             // Arrange
             var output = new StringBuilder();
@@ -41,7 +41,7 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Application.Tests
         }
 
         [TestMethod]
-        public void Case2()
+        public void ExampleInputandOutputB()
         {
             // Arrange
             var output = new StringBuilder();
@@ -75,7 +75,7 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Application.Tests
         }
 
         [TestMethod]
-        public void Case3()
+        public void ExampleInputandOutputC()
         {
             // Arrange
             var output = new StringBuilder();
