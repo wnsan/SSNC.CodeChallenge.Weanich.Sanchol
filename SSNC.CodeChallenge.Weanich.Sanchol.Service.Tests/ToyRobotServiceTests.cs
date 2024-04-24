@@ -47,5 +47,25 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Service.Tests
             Assert.IsNull(toy.PositionY);
             Assert.IsNull(toy.Direction);
         }
+
+        [TestMethod]
+        public void Place_WhenDirectionInValid_IgnoreChange()
+        {
+            // Arrange
+            var toy = new Toy();
+            var board = new Board(5, 5);
+
+            var service = new ToyRobotService();
+
+            // Act
+            service.Place(toy, board, 0, 0, "BELOW");
+
+            // Assert
+            Assert.IsNull(toy.PositionX);
+            Assert.IsNull(toy.PositionY);
+            Assert.IsNull(toy.Direction);
+        }
+
+        
     }
 }
