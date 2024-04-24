@@ -129,5 +129,33 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Service.Tests
             Assert.AreEqual(expectedY, toy.PositionY);
             Assert.AreEqual(expectedPosition, toy.Direction);
         }
+
+        [TestMethod]
+        [DataRow(0, 0, "SOUTH", 0, 0, "SOUTH")]
+        [DataRow(0, 0, "WEST", 0, 0, "WEST")]
+        [DataRow(4, 0, "EAST", 4, 0, "EAST")]
+        [DataRow(4, 0, "SOUTH", 4, 0, "SOUTH")]
+        [DataRow(0, 4, "NORTH", 0, 4, "NORTH")]
+        [DataRow(0, 4, "WEST", 0, 4, "WEST")]
+        [DataRow(4, 4, "NORTH", 4, 4, "NORTH")]
+        [DataRow(4, 4, "EAST", 4, 4, "EAST")]
+        public void Move_WhenNextPositionInValid_IgnoreMove
+            (int atX, int atY, string atDirection,
+             int expectedX, int expectedY, string expectedPosition)
+        {
+            // Arrange
+            var toy = new Toy();
+            var board = new Board(5, 5);
+            var service = new ToyRobotService();
+            service.Place(toy, board, atX, atY, atDirection);
+
+            // Act
+            service.Move(toy, board);
+
+            // Assert
+            Assert.AreEqual(expectedX, toy.PositionX);
+            Assert.AreEqual(expectedY, toy.PositionY);
+            Assert.AreEqual(expectedPosition, toy.Direction);
+        }
     }
 }

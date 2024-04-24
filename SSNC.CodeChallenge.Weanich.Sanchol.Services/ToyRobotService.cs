@@ -44,12 +44,12 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Services
                 toy.MoveDown();
             }
 
-            if (toy.Direction == "EAST" && toy.PositionY + 1 < board.Width)
+            if (toy.Direction == "EAST" && toy.PositionX + 1 < board.Width)
             {
                 toy.MoveRight();
             }
 
-            if (toy.Direction == "WEST" && toy.PositionY - 1 >= 0)
+            if (toy.Direction == "WEST" && toy.PositionX - 1 >= 0)
             {
                 toy.MoveLeft();
             }
