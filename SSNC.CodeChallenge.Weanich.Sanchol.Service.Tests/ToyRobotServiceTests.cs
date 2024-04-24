@@ -1,6 +1,7 @@
 using SSNC.CodeChallenge.Weanich.Sanchol.Domains;
 using SSNC.CodeChallenge.Weanich.Sanchol.Services;
 using System.ComponentModel;
+using System.Runtime.Intrinsics.X86;
 
 namespace SSNC.CodeChallenge.Weanich.Sanchol.Service.Tests
 {
@@ -156,6 +157,46 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Service.Tests
             Assert.AreEqual(expectedX, toy.PositionX);
             Assert.AreEqual(expectedY, toy.PositionY);
             Assert.AreEqual(expectedPosition, toy.Direction);
+        }
+
+        [TestMethod]
+        [DataRow("NORTH", "WEST")]
+        [DataRow("WEST", "SOUTH")]
+        [DataRow("SOUTH", "EAST")]
+        [DataRow("EAST", "NORTH")]
+        public void TurnLeft_WhenToyIsValid_TurnDirectionToLeft(string atDirection, string expected)
+        {
+            // Arrange
+            var toy = new Toy();
+            var board = new Board(5, 5);
+            var service = new ToyRobotService();
+            service.Place(toy, board, 0, 0, atDirection);
+
+            // Act
+            service.TurnLeft(toy);
+
+            // Assert
+            Assert.AreEqual(expected, toy.Direction);
+        }
+
+        [TestMethod]
+        [DataRow("NORTH", "EAST")]
+        [DataRow("EAST", "SOUTH")]
+        [DataRow("SOUTH", "WEST")]
+        [DataRow("WEST", "NORTH")]
+        public void TurnRight_WhenToyIsValid_TurnDirectionToLeft(string atDirection, string expected)
+        {
+            // Arrange
+            var toy = new Toy();
+            var board = new Board(5, 5);
+            var service = new ToyRobotService();
+            service.Place(toy, board, 0, 0, atDirection);
+
+            // Act
+            service.TurnRight(toy);
+
+            // Assert
+            Assert.AreEqual(expected, toy.Direction);
         }
     }
 }

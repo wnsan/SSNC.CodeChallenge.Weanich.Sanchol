@@ -54,5 +54,29 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Services
                 toy.MoveLeft();
             }
         }
+
+        public void TurnLeft(Toy toy)
+        {
+            switch(toy.Direction)
+            {
+                case "NORTH": toy.Direction = "WEST"; return;
+                case "WEST": toy.Direction = "SOUTH"; return;
+                case "SOUTH": toy.Direction = "EAST"; return;
+                case "EAST": toy.Direction = "NORTH"; return;
+
+            }
+        }
+
+        public void TurnRight(Toy toy)
+        {
+            switch (toy.Direction)
+            {
+                case "NORTH": toy.Direction = "EAST"; return;
+                case "EAST": toy.Direction = "SOUTH"; return;
+                case "SOUTH": toy.Direction = "WEST"; return;
+                case "WEST": toy.Direction = "NORTH"; return;
+
+            }
+        }
     }
 }
