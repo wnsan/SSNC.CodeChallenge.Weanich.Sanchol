@@ -107,5 +107,27 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Service.Tests
             // Assert
             Assert.IsNull(actual);
         }
+
+        [TestMethod]
+        [DataRow(0, 0, "NORTH", 0, 1, "NORTH")]
+        [DataRow(0, 0, "EAST", 1, 0, "EAST")]
+        public void Move_WhenNextPositionValid_MoveToyToNextPosition
+            (int atX, int atY, string atDirection,
+             int expectedX, int expectedY, string expectedPosition)
+        {
+            // Arrange
+            var toy = new Toy();
+            var board = new Board(5, 5);
+            var service = new ToyRobotService();
+            service.Place(toy, board, atX, atY, atDirection);
+
+            // Act
+            service.Move(toy, board);
+
+            // Assert
+            Assert.AreEqual(expectedX, toy.PositionX);
+            Assert.AreEqual(expectedY, toy.PositionY);
+            Assert.AreEqual(expectedPosition, toy.Direction);
+        }
     }
 }

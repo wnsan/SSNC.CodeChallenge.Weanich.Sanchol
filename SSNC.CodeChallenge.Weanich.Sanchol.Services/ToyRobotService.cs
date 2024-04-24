@@ -31,5 +31,28 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Services
 
             return $"{toy.PositionX},{toy.PositionY},{toy.Direction}";
         }
+
+        public void Move(Toy toy, Board board)
+        {
+            if(toy.Direction == "NORTH" && toy.PositionY + 1 < board.Height)
+            {
+                toy.MoveUp();
+            }
+
+            if (toy.Direction == "SOUTH" && toy.PositionY - 1 >= 0)
+            {
+                toy.MoveDown();
+            }
+
+            if (toy.Direction == "EAST" && toy.PositionY + 1 < board.Width)
+            {
+                toy.MoveRight();
+            }
+
+            if (toy.Direction == "WEST" && toy.PositionY - 1 >= 0)
+            {
+                toy.MoveLeft();
+            }
+        }
     }
 }
