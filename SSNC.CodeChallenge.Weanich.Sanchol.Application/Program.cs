@@ -3,10 +3,12 @@
 using SSNC.CodeChallenge.Weanich.Sanchol.Domains;
 using SSNC.CodeChallenge.Weanich.Sanchol.Services;
 
+int defaultWidth = 5;
+int defaultHeight = 5;
 var isPlace = false;
 var toyRobotService = new ToyRobotService();
 var toy = new Toy();
-var board = new Board(5, 5);
+var board = new Board(defaultWidth, defaultHeight);
 while (true)
 {
     var command = Console.ReadLine();
