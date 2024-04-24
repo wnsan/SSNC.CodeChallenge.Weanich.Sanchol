@@ -8,7 +8,6 @@
             PositionY = y;
             Direction = f;
         }
-        public Guid Id { get; set; }
 
         public int? PositionX { get; set; }
 
