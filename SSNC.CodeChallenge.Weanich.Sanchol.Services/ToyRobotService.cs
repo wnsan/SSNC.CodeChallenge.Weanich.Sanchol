@@ -4,7 +4,7 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Services
 {
     public class ToyRobotService
     {
-        private readonly string[] Directions =
+        public readonly string[] Directions =
             new string[] { "NORTH", "SOUTH", "EAST", "WEST" };
 
 

@@ -10,15 +10,20 @@ var board = new Board(5, 5);
 while (true)
 {
     var command = Console.ReadLine();
-
+    command = command?.ToUpper();
     if (command.StartsWith("PLACE"))
     {
         var placeCommandArguments = command.Split(" ")[1];
-        var x = int.Parse(placeCommandArguments.Split(",")[0]);
-        var y = int.Parse(placeCommandArguments.Split(",")[1]);
+        var xIsNumber = int.TryParse(placeCommandArguments.Split(",")[0], out int x);
+        var yIsNumber = int.TryParse(placeCommandArguments.Split(",")[1], out int y);
+
         var f = placeCommandArguments.Split(",")[2];
-        toyRobotService.Place(toy, board, x, y, f);
-        isPlace = true;
+        
+        if (xIsNumber && yIsNumber && DirectionIsValid(toyRobotService, f))
+        {
+            toyRobotService.Place(toy, board, x, y, f);
+            isPlace = true;
+        }
     }
     else if (command == "LEFT" && isPlace)
     {
@@ -39,4 +44,9 @@ while (true)
     {
         break;
     }
+}
+
+static bool DirectionIsValid(ToyRobotService toyRobotService, string f)
+{
+    return toyRobotService.Directions.Any(direction => direction?.ToLower() == f?.ToLower());
 }
