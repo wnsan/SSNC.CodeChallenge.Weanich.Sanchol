@@ -182,7 +182,7 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Application.Tests
         [TestMethod]
         [DataRow("PLACE x,1,NORTH")]
         [DataRow("PLACE 1,x,NORTH")]
-        [DataRow("PLACE 1,1,NORTH")]
+        [DataRow("PLACE 1,1,BELOW")]
         public void IgnorePlaceAction_WhenArgumentsInValid(string command)
         {
             // Arrange
@@ -200,7 +200,6 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Application.Tests
             p.BeginOutputReadLine();
             
             var standardInput = p.StandardInput;
-            string validCommmand = "PLACE 1,1,NORTH";
             // Act
             standardInput.WriteLine(command);
             standardInput.WriteLine("REPORT");
@@ -210,7 +209,7 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Application.Tests
             p.Kill();
 
             // Assert
-            Assert.IsTrue(isExited);
+            Assert.AreEqual("", output.ToString());
             Assert.AreEqual(0, p.ExitCode);
         }
 
