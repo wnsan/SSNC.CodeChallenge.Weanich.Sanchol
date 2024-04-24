@@ -13,16 +13,19 @@ while (true)
     command = command?.ToUpper();
     if (command.StartsWith("PLACE"))
     {
-        var placeCommandArguments = command.Split(" ")[1];
-        var xIsNumber = int.TryParse(placeCommandArguments.Split(",")[0], out int x);
-        var yIsNumber = int.TryParse(placeCommandArguments.Split(",")[1], out int y);
-
-        var f = placeCommandArguments.Split(",")[2];
-        
-        if (xIsNumber && yIsNumber && DirectionIsValid(toyRobotService, f))
+        var placeCommandArguments = command.Substring(5);
+        if (placeCommandArguments.Split(",").Length == 3)
         {
-            toyRobotService.Place(toy, board, x, y, f);
-            isPlace = true;
+            var xIsNumber = int.TryParse(placeCommandArguments.Split(",")[0].Trim(), out int x);
+            var yIsNumber = int.TryParse(placeCommandArguments.Split(",")[1].Trim(), out int y);
+
+            var f = placeCommandArguments.Split(",")[2].Trim();
+
+            if (xIsNumber && yIsNumber && DirectionIsValid(toyRobotService, f))
+            {
+                toyRobotService.Place(toy, board, x, y, f);
+                isPlace = true;
+            }
         }
     }
     else if (command == "LEFT" && isPlace)

@@ -233,7 +233,7 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Application.Tests
             var standardInput = p.StandardInput;
 
             // Act
-            standardInput.WriteLine("PlAce 2,0,nOrth");
+            standardInput.WriteLine("PlAce 2,0,nOrth ");
             standardInput.WriteLine("MovE");
             standardInput.WriteLine("LeFt");
             standardInput.WriteLine("Move");
@@ -247,6 +247,69 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Application.Tests
 
             // Assert
             Assert.AreEqual("Output: 1,2,NORTH", output.ToString());
+        }
+
+        [TestMethod]
+        public void ExecuteAction_WhenCommandArgumentHaveWhiteSpaceBetween()
+        {
+            // Arrange
+            var output = new StringBuilder();
+            Process p = new Process();
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.FileName = Path.Combine(AppContext.BaseDirectory, "SSNC.CodeChallenge.Weanich.Sanchol.Application.exe");
+            p.OutputDataReceived += (sender, eventArgs) =>
+            {
+                output.Append(eventArgs.Data);
+            };
+            p.Start();
+            p.BeginOutputReadLine();
+
+            var standardInput = p.StandardInput;
+
+            // Act
+            standardInput.WriteLine("PlAce   2 , 0 , nOrth ");
+            standardInput.WriteLine("REPORT");
+            standardInput.WriteLine("EXIT");
+            standardInput.Flush();
+            p.WaitForExit(100);
+            p.Kill();
+
+            // Assert
+            Assert.AreEqual("Output: 2,0,NORTH", output.ToString());
+        }
+
+        [TestMethod]
+        public void IgnorePlaceAction_WhenCommandArgumentLengthIsInvalid()
+        {
+            // Arrange
+            var output = new StringBuilder();
+            Process p = new Process();
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.FileName = Path.Combine(AppContext.BaseDirectory, "SSNC.CodeChallenge.Weanich.Sanchol.Application.exe");
+            p.OutputDataReceived += (sender, eventArgs) =>
+            {
+                output.Append(eventArgs.Data);
+            };
+            p.Start();
+            p.BeginOutputReadLine();
+
+            var standardInput = p.StandardInput;
+
+            // Act
+            standardInput.WriteLine("PlAce   2  , nOrth ");
+            standardInput.WriteLine("REPORT");
+            standardInput.WriteLine("EXIT");
+            standardInput.Flush();
+            p.WaitForExit(1000);
+            p.Kill();
+
+            // Assert
+            Assert.AreEqual(0, p.ExitCode);
+            Assert.AreEqual("", output.ToString());
         }
     }
 }
