@@ -1,5 +1,6 @@
 using SSNC.CodeChallenge.Weanich.Sanchol.Domains;
 using SSNC.CodeChallenge.Weanich.Sanchol.Services;
+using System.ComponentModel;
 
 namespace SSNC.CodeChallenge.Weanich.Sanchol.Service.Tests
 {
@@ -66,6 +67,45 @@ namespace SSNC.CodeChallenge.Weanich.Sanchol.Service.Tests
             Assert.IsNull(toy.Direction);
         }
 
-        
+        [TestMethod]
+        [DataRow(0, 0 , "NORTH", "0,0,NORTH")]
+        [DataRow(0, 0, "SOUTH", "0,0,SOUTH")]
+        [DataRow(0, 0, "EAST", "0,0,EAST")]
+        [DataRow(0, 0, "WEST", "0,0,WEST")]
+        [DataRow(0, 1, "NORTH", "0,1,NORTH")]
+        [DataRow(1, 0, "NORTH", "1,0,NORTH")]
+        public void Report_WhenValidPosition_ReportToyPositionAndDirection
+            (int x, int y, string direction, string expected)
+        {
+            // Arrange
+            var toy = new Toy();
+            var board = new Board(5, 5);
+
+            var service = new ToyRobotService();
+            service.Place(toy, board, x, y, direction);
+
+            // Act
+            var actual = service.Report(toy);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Report_WhenInValidPosition_ReturnNull()
+        {
+            // Arrange
+            var toy = new Toy();
+            var board = new Board(5, 5);
+
+            var service = new ToyRobotService();
+            service.Place(toy, board, -1, -1, "NORTH");
+
+            // Act
+            var actual = service.Report(toy);
+
+            // Assert
+            Assert.IsNull(actual);
+        }
     }
 }
