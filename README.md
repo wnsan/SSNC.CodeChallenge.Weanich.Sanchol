@@ -24,4 +24,7 @@
      - we can run test in Test Explorer by click the most left hand icon all (Ctrl+R).
 ## References
  - ![SSNC How to run project ](https://github.com/wnsan/SSNC.CodeChallenge.Weanich.Sanchol/assets/17219770/ae722aa5-cb38-46c3-9186-8fc032aa48ee)
+ - In case
+   - only install .NET 6 runtime, we could unzip Toy bot console application.zip and run directly
+   - otherwise, use self-contained console application in this link https://drive.google.com/file/d/1GCuwc_ZgTfiDoU0j2dY_8Vt3Uf19jnHA/view?usp=sharing
 
