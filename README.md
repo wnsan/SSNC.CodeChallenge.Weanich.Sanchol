@@ -1,6 +1,6 @@
 # SSNC.CodeChallenge.Weanich.Sanchol
 ## Prerequitsites 
- - Visual Studio 2022 with .NET 6 SDK
+ - Visual Studio 2022 with .NET 6 SDK. For more information https://visualstudio.microsoft.com/downloads/
 ## Solutions Structure
  - SSNC.CodeChallenge.Weanich.Sanchol.Application
    - **contains main console application.**
@@ -22,4 +22,6 @@
  - At Menu Bar on the top
    - Navigates to Test and select Test Explorer
      - we can run test in Test Explorer by click the most left hand icon all (Ctrl+R).
-![SSNC How to run project ](https://github.com/wnsan/SSNC.CodeChallenge.Weanich.Sanchol/assets/17219770/00b638a4-eee5-4b47-a71e-336a7cc9a99f)
+## References
+ - ![SSNC How to run project ](https://github.com/wnsan/SSNC.CodeChallenge.Weanich.Sanchol/assets/17219770/ae722aa5-cb38-46c3-9186-8fc032aa48ee)
+
